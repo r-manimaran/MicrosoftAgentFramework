@@ -5,25 +5,34 @@ using OpenAI;
 using System.Reflection;
 using System.Text;
 using ToolCalling.Advanced;
+using ToolCalling.Advanced.Extensions;
 
 AzureOpenAIClient client = new AzureOpenAIClient(new Uri(AIConfig.Endpoint), new Azure.AzureKeyCredential(AIConfig.ApiKey));
 
+FileSystemTools target = new FileSystemTools();
 // Get the tools using reflection
 MethodInfo[] methods = typeof(FileSystemTools).GetMethods(BindingFlags.Public | BindingFlags.Instance);
+List<AITool> listOfTools = methods.Select(x=> 
+    AIFunctionFactory.Create(x, target)).Cast<AITool>().ToList();
 
-List<AITool> listOfTools = methods.Select(x=> AIFunctionFactory.Create(x,new FileSystemTools())).Cast<AITool>().ToList();
+#pragma warning disable MEAI001
+// Adding the Approval Tool
+listOfTools.Add(new ApprovalRequiredAIFunction(AIFunctionFactory.Create(DangerousTools.SomethingDangerous)));
+#pragma warning restore MEAI001
+
 
 // Create the agent
 AIAgent agent = client.GetChatClient(AIConfig.DeploymentOrModelId)
-    .CreateAIAgent(
-    instructions: "You are a File system Expert. When working with files you need to provide the full path; not just the filename",
-    tools: listOfTools
-    )    
+                      .CreateAIAgent(
+                        instructions: "You are a File system Expert. When working with files you need to provide the full path; not just the filename",
+                        tools: listOfTools
+                )    
     .AsBuilder()
+    .UseOpenTelemetry()
     .Use(FunctionCallingMiddleware) // Calling the Middleware to handle function calling and user approvals
     .Build();
 
-
+// Act as the memory for the agent and hold the conversation
 AgentThread thread = agent.GetNewThread();
 
 // Chat 
@@ -53,7 +62,10 @@ while(true)
         userInputRequests = response.UserInputRequests.ToList();
     }
     Console.WriteLine(response);
-
+    Utils.WriteLineInformation("************************************");
+    Utils.WriteLineInformation($"- Input Tokens:{response.Usage?.InputTokenCount}");
+    Utils.WriteLineInformation($"- Output Tokens:{response.Usage?.OutputTokenCount}" +
+        $"({response.Usage?.GetOutputTokensUsedForReasoning()} was used for reasoning)");
     Utils.Separator();
 #pragma warning restore MEAI001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 }
@@ -64,8 +76,10 @@ async ValueTask<object?> FunctionCallingMiddleware(
     CancellationToken token)
 {
     StringBuilder functionCallDetails = new();
+    // Log the function tool which is being called
     functionCallDetails.Append($"Tool Call:'{context.Function.Name}'");
-    if(context.Arguments.Count > 0)
+    // Log the arguments if any when calling the tool
+    if (context.Arguments.Count > 0)
     {
         functionCallDetails.Append($" (Args: {string.Join(", ", context.Arguments.Select(kv => $"{kv.Key}:{kv.Value}"))})");
     }  
