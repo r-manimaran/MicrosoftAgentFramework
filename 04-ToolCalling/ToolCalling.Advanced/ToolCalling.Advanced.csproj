@@ -14,6 +14,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.9" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.9" />
     <PackageReference Include="Azure.AI.OpenAI" Version="2.1.0" />
+    <PackageReference Include="OpenTelemetry" Version="1.13.1" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.13.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.1-dev-00953" />
   </ItemGroup>
 
   <ItemGroup>

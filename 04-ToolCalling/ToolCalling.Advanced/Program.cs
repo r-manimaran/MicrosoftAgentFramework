@@ -6,20 +6,30 @@ using System.Reflection;
 using System.Text;
 using ToolCalling.Advanced;
 using ToolCalling.Advanced.Extensions;
+using OpenTelemetry;
+using OpenTelemetry.Trace;
 
 AzureOpenAIClient client = new AzureOpenAIClient(new Uri(AIConfig.Endpoint), new Azure.AzureKeyCredential(AIConfig.ApiKey));
 
 FileSystemTools target = new FileSystemTools();
 // Get the tools using reflection
 MethodInfo[] methods = typeof(FileSystemTools).GetMethods(BindingFlags.Public | BindingFlags.Instance);
-List<AITool> listOfTools = methods.Select(x=> 
-    AIFunctionFactory.Create(x, target)).Cast<AITool>().ToList();
+
+// Create the tools from the methods
+List<AITool> listOfTools = methods.Select(x=> AIFunctionFactory.Create(x, target)).Cast<AITool>().ToList();
 
 #pragma warning disable MEAI001
 // Adding the Approval Tool
 listOfTools.Add(new ApprovalRequiredAIFunction(AIFunctionFactory.Create(DangerousTools.SomethingDangerous)));
 #pragma warning restore MEAI001
 
+//OpenTelemetry source name
+string sourceName = Guid.NewGuid().ToString("N");
+
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+                              .AddSource(sourceName)
+                              .AddConsoleExporter()
+                              .Build();
 
 // Create the agent
 AIAgent agent = client.GetChatClient(AIConfig.DeploymentOrModelId)
@@ -28,7 +38,7 @@ AIAgent agent = client.GetChatClient(AIConfig.DeploymentOrModelId)
                         tools: listOfTools
                 )    
     .AsBuilder()
-    .UseOpenTelemetry()
+    .UseOpenTelemetry(sourceName)
     .Use(FunctionCallingMiddleware) // Calling the Middleware to handle function calling and user approvals
     .Build();
 
@@ -40,7 +50,9 @@ while(true)
 {
     Console.Write("> ");
     string? input = Console.ReadLine();
+
     if (string.IsNullOrWhiteSpace(input)) continue;
+
     if (input == "exit") break;
 
     ChatMessage userMessage = new ChatMessage(ChatRole.User, input);
@@ -68,6 +80,7 @@ while(true)
         $"({response.Usage?.GetOutputTokensUsedForReasoning()} was used for reasoning)");
     Utils.Separator();
 #pragma warning restore MEAI001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+
 }
 
 async ValueTask<object?> FunctionCallingMiddleware(
