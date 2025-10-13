@@ -190,6 +190,9 @@ AI: [Calls GetFiles tool]
 The folder contains: hello.txt
 ```
 
+**MCP Tool call**
+![MCP Tool Call](image-10.png)
+
 ## Key Benefits
 
 1. **Extended Capabilities**: AI can perform real actions, not just provide information
