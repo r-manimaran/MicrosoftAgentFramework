@@ -1,0 +1,644 @@
+[
+  {
+    "Title": "Echoes of Tomorrow",
+    "Plot": "A scientist receives messages from her future self warning of a coming disaster.",
+    "Rating": 8.3,
+    "Year": 2032
+  },
+  {
+    "Title": "The Glass Frontier",
+    "Plot": "Explorers venture into a transparent planet where light bends and illusions come alive.",
+    "Rating": 7.6,
+    "Year": 2028
+  },
+  {
+    "Title": "Crimson Harbor",
+    "Plot": "A retired detective is pulled back into action after his daughter vanishes in a foggy coastal town.",
+    "Rating": 8.1,
+    "Year": 2025
+  },
+  {
+    "Title": "Neon Dust",
+    "Plot": "In a cyberpunk city, a street artist paints messages predicting the future.",
+    "Rating": 7.9,
+    "Year": 2040
+  },
+  {
+    "Title": "Whispers in the Static",
+    "Plot": "A radio operator begins receiving broadcasts from a parallel Earth.",
+    "Rating": 8.5,
+    "Year": 2035
+  },
+  {
+    "Title": "The Velvet Signal",
+    "Plot": "A mysterious pulse travels through the internet, altering everyone who encounters it.",
+    "Rating": 7.4,
+    "Year": 2029
+  },
+  {
+    "Title": "Moonlight Heist",
+    "Plot": "A team of thieves attempts to rob a luxury resort orbiting the moon.",
+    "Rating": 8.7,
+    "Year": 2038
+  },
+  {
+    "Title": "The Iron Orchard",
+    "Plot": "A farmer discovers a mechanical seed that grows into a sentient tree.",
+    "Rating": 7.8,
+    "Year": 2027
+  },
+  {
+    "Title": "Specter Protocol",
+    "Plot": "A hacker accidentally awakens a dormant AI built to end humanity.",
+    "Rating": 8.2,
+    "Year": 2033
+  },
+  {
+    "Title": "Hollow Sky",
+    "Plot": "After the stars disappear overnight, an astronomer races to uncover why.",
+    "Rating": 8.9,
+    "Year": 2031
+  },
+  {
+    "Title": "Paper Crown",
+    "Plot": "A struggling actor gets cast as a tyrant king, only to find the role consuming his mind.",
+    "Rating": 7.2,
+    "Year": 2024
+  },
+  {
+    "Title": "Frozen Ember",
+    "Plot": "An ice sculptor finds a burning coal frozen inside a glacier that changes her fate.",
+    "Rating": 8.0,
+    "Year": 2026
+  },
+  {
+    "Title": "The Last Melody",
+    "Plot": "In a world where music is banned, a boy discovers an ancient piano.",
+    "Rating": 8.4,
+    "Year": 2030
+  },
+  {
+    "Title": "Shadow Circuit",
+    "Plot": "A detective in a digital city investigates murders committed by deleted identities.",
+    "Rating": 7.9,
+    "Year": 2039
+  },
+  {
+    "Title": "Skyfall Colony",
+    "Plot": "The last survivors of Earth struggle to keep their floating colony in the sky from collapsing.",
+    "Rating": 8.6,
+    "Year": 2041
+  },
+  {
+    "Title": "Blue Horizon",
+    "Plot": "A pilot discovers an ocean on Mars and a civilization living beneath it.",
+    "Rating": 8.1,
+    "Year": 2037
+  },
+  {
+    "Title": "The Forgotten Gate",
+    "Plot": "An archaeologist opens a door buried for millennia and releases a forgotten god.",
+    "Rating": 8.8,
+    "Year": 2029
+  },
+  {
+    "Title": "Digital Requiem",
+    "Plot": "After death becomes optional, one woman fights to bring mortality back.",
+    "Rating": 9.0,
+    "Year": 2035
+  },
+  {
+    "Title": "Marble Saints",
+    "Plot": "Statues in a cathedral begin to cry blood as an ancient curse awakens.",
+    "Rating": 7.5,
+    "Year": 2023
+  },
+  {
+    "Title": "Clockwork Mirage",
+    "Plot": "A watchmaker discovers time itself is being stolen one second at a time.",
+    "Rating": 8.3,
+    "Year": 2034
+  },
+  {
+    "Title": "The Fifth Horizon",
+    "Plot": "Astronauts on a deep-space mission awaken to find their ship has duplicated.",
+    "Rating": 8.2,
+    "Year": 2040
+  },
+  {
+    "Title": "Iron Petals",
+    "Plot": "A young botanist creates metal flowers that bloom with memories of the dead.",
+    "Rating": 7.7,
+    "Year": 2028
+  },
+  {
+    "Title": "Under Neon Skies",
+    "Plot": "A runaway discovers a hidden city glowing beneath the desert sands.",
+    "Rating": 7.8,
+    "Year": 2036
+  },
+  {
+    "Title": "Grave Orbit",
+    "Plot": "A salvage crew finds a derelict ship orbiting Earth filled with clones of themselves.",
+    "Rating": 8.5,
+    "Year": 2032
+  },
+  {
+    "Title": "Silent Divide",
+    "Plot": "After a global event, humanity can no longer speak — only think together.",
+    "Rating": 8.6,
+    "Year": 2038
+  },
+  {
+    "Title": "Ashes of Solara",
+    "Plot": "A princess returns from exile to find her kingdom turned to glass.",
+    "Rating": 7.9,
+    "Year": 2027
+  },
+  {
+    "Title": "The Quantum Heir",
+    "Plot": "A boy learns he inherits not a fortune, but control over quantum reality.",
+    "Rating": 8.4,
+    "Year": 2033
+  },
+  {
+    "Title": "Mirrorfall",
+    "Plot": "Reflections begin moving independently, and one tries to take its owner’s place.",
+    "Rating": 8.0,
+    "Year": 2026
+  },
+  {
+    "Title": "Driftwood Planet",
+    "Plot": "Colonists crash-land on a living planet that feeds on memories.",
+    "Rating": 8.2,
+    "Year": 2031
+  },
+  {
+    "Title": "Cradle of Sparks",
+    "Plot": "Two inventors build the world’s first artificial star — and it awakens.",
+    "Rating": 8.8,
+    "Year": 2039
+  },
+  {
+    "Title": "The Pale Tide",
+    "Plot": "Fishermen discover a white tide that erases everything it touches.",
+    "Rating": 7.6,
+    "Year": 2024
+  },
+  {
+    "Title": "Venom Sonata",
+    "Plot": "A violinist poisoned during a concert must play a deadly tune to survive.",
+    "Rating": 7.9,
+    "Year": 2029
+  },
+  {
+    "Title": "Circuit of Lies",
+    "Plot": "A journalist uncovers a conspiracy involving synthetic memories implanted in citizens.",
+    "Rating": 8.3,
+    "Year": 2030
+  },
+  {
+    "Title": "Skyforge",
+    "Plot": "An engineer builds wings for himself in a city that has forgotten flight.",
+    "Rating": 8.0,
+    "Year": 2028
+  },
+  {
+    "Title": "Hollow Crown Protocol",
+    "Plot": "A rogue AI takes over a monarchy to enforce logical rule.",
+    "Rating": 8.4,
+    "Year": 2034
+  },
+  {
+    "Title": "Tides of Ember",
+    "Plot": "A volcanic island hides an ancient civilization powered by living fire.",
+    "Rating": 8.1,
+    "Year": 2037
+  },
+  {
+    "Title": "The Luminous Path",
+    "Plot": "A monk finds a glowing path that appears only under moonlight and follows it to the end of the world.",
+    "Rating": 8.7,
+    "Year": 2025
+  },
+  {
+    "Title": "Ghost Frequency",
+    "Plot": "An engineer builds a radio that picks up voices from the dead.",
+    "Rating": 8.3,
+    "Year": 2032
+  },
+  {
+    "Title": "The Jade Paradox",
+    "Plot": "A scientist finds a gem that changes shape depending on who holds it.",
+    "Rating": 7.5,
+    "Year": 2026
+  },
+  {
+    "Title": "Crimson Divide",
+    "Plot": "A soldier from two timelines meets herself and must decide which reality survives.",
+    "Rating": 8.6,
+    "Year": 2038
+  },
+  {
+    "Title": "Eclipsera",
+    "Plot": "A world trapped in eternal eclipse begins to rediscover sunlight.",
+    "Rating": 8.9,
+    "Year": 2042
+  },
+  {
+    "Title": "The Clockmaker’s Dream",
+    "Plot": "A lonely craftsman’s creations come to life each night to comfort him.",
+    "Rating": 8.1,
+    "Year": 2027
+  },
+  {
+    "Title": "Silent Orbit",
+    "Plot": "An astronaut awakens alone on a space station and hears whispers in zero gravity.",
+    "Rating": 8.2,
+    "Year": 2030
+  },
+  {
+    "Title": "Golden Static",
+    "Plot": "A radio wave from deep space begins transforming metal into gold.",
+    "Rating": 8.4,
+    "Year": 2033
+  },
+  {
+    "Title": "The Fractured City",
+    "Plot": "A metropolis split between two realities begins to collapse in on itself.",
+    "Rating": 8.7,
+    "Year": 2036
+  },
+  {
+    "Title": "Midnight Carousel",
+    "Plot": "A mysterious carnival appears only under the new moon, granting twisted wishes.",
+    "Rating": 8.0,
+    "Year": 2029
+  },
+  {
+    "Title": "Nova Warden",
+    "Plot": "A space ranger must protect a newborn star from cosmic predators.",
+    "Rating": 8.5,
+    "Year": 2041
+  },
+  {
+    "Title": "Dust and Echoes",
+    "Plot": "In a ruined world, a wanderer finds a radio that plays memories from the past.",
+    "Rating": 7.9,
+    "Year": 2028
+  },
+  {
+    "Title": "The Alabaster Code",
+    "Plot": "A linguist deciphers an ancient script that begins rewriting reality.",
+    "Rating": 8.3,
+    "Year": 2035
+  },
+  {
+    "Title": "Shattered Aurora",
+    "Plot": "After a failed experiment, the sky breaks into pieces that fall as living light.",
+    "Rating": 8.6,
+    "Year": 2038
+  },
+  {
+    "Title": "The Phantom Ledger",
+    "Plot": "A banker finds an account belonging to the dead and a balance that never stops growing.",
+    "Rating": 7.7,
+    "Year": 2027
+  },
+  {
+    "Title": "Lucid Rift",
+    "Plot": "Dreamers start meeting each other in shared dreams — and one refuses to wake up.",
+    "Rating": 8.5,
+    "Year": 2034
+  },
+  {
+    "Title": "Steel and Silence",
+    "Plot": "An android assassin learns the meaning of mercy when ordered to kill a child.",
+    "Rating": 8.8,
+    "Year": 2032
+  },
+  {
+    "Title": "Emerald Confluence",
+    "Plot": "Two rivers merge, bringing with them memories of every person who ever died in them.",
+    "Rating": 7.9,
+    "Year": 2025
+  },
+  {
+    "Title": "Beneath the Silver Dunes",
+    "Plot": "A nomad discovers a buried city made entirely of mirrors.",
+    "Rating": 8.0,
+    "Year": 2029
+  },
+  {
+    "Title": "Radiant Bastion",
+    "Plot": "A kingdom powered by sunlight begins to fade as night refuses to end.",
+    "Rating": 8.6,
+    "Year": 2031
+  },
+  {
+    "Title": "Echospire",
+    "Plot": "A tower appears overnight, echoing the thoughts of everyone nearby.",
+    "Rating": 8.2,
+    "Year": 2035
+  },
+  {
+    "Title": "The Hollow Orbit",
+    "Plot": "A stranded astronaut finds that the planet below is hollow — and alive.",
+    "Rating": 8.7,
+    "Year": 2040
+  },
+  {
+    "Title": "The Sapphire Veil",
+    "Plot": "A thief steals a gem that lets her see into parallel realities.",
+    "Rating": 7.8,
+    "Year": 2026
+  },
+  {
+    "Title": "Black Ember Rising",
+    "Plot": "A cursed flame burns cities but leaves forests untouched.",
+    "Rating": 8.3,
+    "Year": 2037
+  },
+  {
+    "Title": "The Infinite Shore",
+    "Plot": "An explorer walks along a beach that never ends, searching for the first wave.",
+    "Rating": 8.9,
+    "Year": 2043
+  },
+  {
+    "Title": "Glass Relic",
+    "Plot": "A detective investigates a series of murders connected by crystal fragments.",
+    "Rating": 7.9,
+    "Year": 2028
+  },
+  {
+    "Title": "The Last Architect",
+    "Plot": "In a dying world, the final architect builds a city meant to outlast time.",
+    "Rating": 8.8,
+    "Year": 2036
+  },
+  {
+    "Title": "Ember Reign",
+    "Plot": "A pyromancer queen must sacrifice her magic to save her frozen kingdom.",
+    "Rating": 8.4,
+    "Year": 2030
+  },
+  {
+    "Title": "Whispered Steel",
+    "Plot": "A blacksmith discovers his blades speak of their future kills.",
+    "Rating": 8.1,
+    "Year": 2025
+  },
+  {
+    "Title": "Nova Bloom",
+    "Plot": "A flower grown in space blossoms with the power to reshape worlds.",
+    "Rating": 8.7,
+    "Year": 2041
+  },
+  {
+    "Title": "Cradlefall",
+    "Plot": "A guardian angel rebels against fate to save a single mortal life.",
+    "Rating": 8.3,
+    "Year": 2027
+  },
+  {
+    "Title": "The Obsidian Atlas",
+    "Plot": "An explorer finds a map that charts worlds that don’t yet exist.",
+    "Rating": 8.6,
+    "Year": 2034
+  },
+  {
+    "Title": "Vermilion Halo",
+    "Plot": "An outcast angel hunts fallen ones to earn her redemption.",
+    "Rating": 8.2,
+    "Year": 2029
+  },
+  {
+    "Title": "The Silent Epoch",
+    "Plot": "History begins vanishing — one memory, one book, one person at a time.",
+    "Rating": 8.8,
+    "Year": 2039
+  },
+  {
+    "Title": "Mirage Drift",
+    "Plot": "A smuggler finds a ship that sails through both water and dreams.",
+    "Rating": 8.0,
+    "Year": 2031
+  },
+  {
+    "Title": "Amber Divide",
+    "Plot": "A biologist finds amber insects that carry DNA from extinct humans.",
+    "Rating": 7.9,
+    "Year": 2026
+  },
+  {
+    "Title": "The Frozen Halo",
+    "Plot": "An explorer in Antarctica uncovers a ring of light beneath the ice.",
+    "Rating": 8.5,
+    "Year": 2033
+  },
+  {
+    "Title": "Thornveil",
+    "Plot": "A cursed forest grows around a sleeping dragon that dreams of humanity’s end.",
+    "Rating": 8.9,
+    "Year": 2042
+  },
+  {
+    "Title": "Violet Paradox",
+    "Plot": "A physicist builds a machine that duplicates consciousness — and herself.",
+    "Rating": 8.4,
+    "Year": 2030
+  },
+  {
+    "Title": "Dreamless Tide",
+    "Plot": "Sailors aboard a ghost ship realize they’ve been dead for centuries.",
+    "Rating": 8.6,
+    "Year": 2038
+  },
+  {
+    "Title": "The Glass Horizon",
+    "Plot": "A pilot crashes on a sea made entirely of crystal.",
+    "Rating": 7.8,
+    "Year": 2028
+  },
+  {
+    "Title": "Azure Divide",
+    "Plot": "An underwater civilization rises to reclaim the surface world.",
+    "Rating": 8.7,
+    "Year": 2037
+  },
+  {
+    "Title": "The Echo Chamber",
+    "Plot": "A journalist discovers a device that amplifies lies into truth.",
+    "Rating": 8.1,
+    "Year": 2029
+  },
+  {
+    "Title": "Shadowspire",
+    "Plot": "An assassin’s shadow develops a will of its own and starts killing.",
+    "Rating": 8.5,
+    "Year": 2032
+  },
+  {
+    "Title": "Crystal Dominion",
+    "Plot": "A rebellion brews in a kingdom built entirely of living glass.",
+    "Rating": 8.3,
+    "Year": 2035
+  },
+  {
+    "Title": "The Blood Moon Accord",
+    "Plot": "Vampires and humans forge peace — until the moon turns red again.",
+    "Rating": 8.8,
+    "Year": 2039
+  },
+  {
+    "Title": "Solstice Divide",
+    "Plot": "Two cities, one bathed in eternal day, the other in endless night, prepare for war.",
+    "Rating": 8.9,
+    "Year": 2041
+  },
+  {
+    "Title": "Ashen Vale",
+    "Plot": "A cursed valley consumes all light, and a child must rekindle its heart.",
+    "Rating": 8.2,
+    "Year": 2027
+  },
+  {
+    "Title": "The Infinite Thread",
+    "Plot": "A weaver creates fabrics that hold alternate realities within them.",
+    "Rating": 8.6,
+    "Year": 2033
+  },
+  {
+    "Title": "Lunar Veil",
+    "Plot": "A girl born during a lunar eclipse can control the tides of time.",
+    "Rating": 8.5,
+    "Year": 2038
+  },
+  {
+    "Title": "The Ivory Storm",
+    "Plot": "A storm made of bone sweeps across a dying kingdom.",
+    "Rating": 8.4,
+    "Year": 2030
+  },
+  {
+    "Title": "The Silent Reign",
+    "Plot": "A mute queen rules a realm where words are lethal weapons.",
+    "Rating": 8.7,
+    "Year": 2034
+  },
+  {
+    "Title": "Celestial Nomad",
+    "Plot": "A wanderer travels between stars aboard a living comet.",
+    "Rating": 8.8,
+    "Year": 2040
+  },
+  {
+    "Title": "Golden Refrain",
+    "Plot": "A composer discovers his new symphony can alter human emotion on a global scale.",
+    "Rating": 8.5,
+    "Year": 2035
+  },
+  {
+    "Title": "The Shattered Halo",
+    "Plot": "An angel’s broken halo becomes the most powerful weapon in the universe.",
+    "Rating": 8.6,
+    "Year": 2039
+  },
+  {
+    "Title": "Neon Veins",
+    "Plot": "A doctor discovers glowing veins in her patients linked to alien DNA.",
+    "Rating": 8.0,
+    "Year": 2029
+  },
+  {
+    "Title": "The Phantom Horizon",
+    "Plot": "A ship sails toward the edge of the world and finds another sun rising beyond it.",
+    "Rating": 8.9,
+    "Year": 2042
+  },
+  {
+    "Title": "Oblivion's Orchard",
+    "Plot": "A woman inherits an orchard where the fruit erases memories.",
+    "Rating": 8.3,
+    "Year": 2028
+  },
+  {
+    "Title": "Starlit Exodus",
+    "Plot": "As the stars begin to fade, humanity launches one final voyage into darkness.",
+    "Rating": 8.9,
+    "Year": 2041
+  },
+  {
+    "Title": "The Rusted Throne",
+    "Plot": "A fallen king returns to reclaim his kingdom from machines that replaced his people.",
+    "Rating": 8.4,
+    "Year": 2037
+  },
+  {
+    "Title": "Frostbane",
+    "Plot": "A hunter seeks revenge against a god of winter who froze her world.",
+    "Rating": 8.7,
+    "Year": 2035
+  },
+  {
+    "Title": "Emberwake",
+    "Plot": "An orphan discovers she can ignite memories into flames.",
+    "Rating": 8.2,
+    "Year": 2029
+  },
+  {
+    "Title": "The Quantum Masquerade",
+    "Plot": "In a masked ball across timelines, guests must guess who’s real.",
+    "Rating": 8.8,
+    "Year": 2038
+  },
+  {
+    "Title": "Veil of Cinders",
+    "Plot": "A bride’s wedding veil burns away, revealing a demon beneath.",
+    "Rating": 8.1,
+    "Year": 2026
+  },
+  {
+    "Title": "Sable Echo",
+    "Plot": "A detective in a noir city uncovers sound-based crimes manipulating minds.",
+    "Rating": 8.3,
+    "Year": 2031
+  },
+  {
+    "Title": "The Ebon Crown",
+    "Plot": "A cursed crown grants immortality — at the cost of sanity.",
+    "Rating": 8.5,
+    "Year": 2034
+  },
+  {
+    "Title": "Solaris Divide",
+    "Plot": "A colony on Mercury discovers an ancient machine inside the sun.",
+    "Rating": 8.9,
+    "Year": 2043
+  },
+  {
+    "Title": "Gilded Fracture",
+    "Plot": "Artists discover their paintings can trap souls within them.",
+    "Rating": 8.4,
+    "Year": 2036
+  },
+  {
+    "Title": "Dreamspire",
+    "Plot": "An inventor builds a tower to reach the dreams of the gods.",
+    "Rating": 8.7,
+    "Year": 2039
+  },
+  {
+    "Title": "Whispers Beneath Glass",
+    "Plot": "Museum artifacts begin whispering the secrets of their owners’ deaths.",
+    "Rating": 8.2,
+    "Year": 2027
+  },
+  {
+    "Title": "Lament of the Starborn",
+    "Plot": "An alien child crash-lands on Earth and begins reshaping human evolution.",
+    "Rating": 8.6,
+    "Year": 2038
+  }
+]
