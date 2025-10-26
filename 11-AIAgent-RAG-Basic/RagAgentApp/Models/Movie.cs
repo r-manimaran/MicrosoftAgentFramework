@@ -13,8 +13,8 @@ public class Movie
     public decimal Rating { get; set; }
     public int Year { get; set; }
 
-    internal string? GetTitleAndDetails()
+    public string? GetTitleAndDetails()
     {
-        throw new NotImplementedException();
+        return $"Title: {Title} \nPlot:{Plot}";
     }
 }

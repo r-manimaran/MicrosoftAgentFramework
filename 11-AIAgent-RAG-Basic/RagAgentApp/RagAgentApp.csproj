@@ -19,10 +19,23 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.9" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.9" />
     <PackageReference Include="Azure.AI.OpenAI" Version="2.1.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureAISearch" Version="1.66.0-preview" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.CosmosNoSql" Version="1.66.0-preview" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.InMemory" Version="1.66.0-preview" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.SqlServer" Version="1.66.0-preview" />
     <PackageReference Include="OpenTelemetry" Version="1.13.1" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.13.1" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.1-dev-00953" />
     <PackageReference Include="OpenAI" Version="2.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mymovies.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 
