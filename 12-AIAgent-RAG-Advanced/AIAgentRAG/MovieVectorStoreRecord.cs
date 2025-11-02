@@ -19,9 +19,11 @@ public class MovieVectorStoreRecord
     public required decimal Rating { get; set; }
     [VectorStoreData]
     public required int Year { get; set; }
-
-    [VectorStoreVector(1536, DistanceFunction = DistanceFunction.CosineDistance, IndexKind = IndexKind.Hnsw)]
+    // IndexKind = IndexKind.
+    [VectorStoreVector(1536, DistanceFunction = DistanceFunction.CosineDistance)]
     public string? Embedding => $"Title: {Title} - Rating: {Rating} - Plot:{Plot}";
+    [VectorStoreData]
+    public string Genre { get; set; }
 
     public string GetTitleAndDetails()
     {

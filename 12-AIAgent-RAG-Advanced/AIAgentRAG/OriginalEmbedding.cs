@@ -21,7 +21,7 @@ public static class OriginalEmbedding
         {
 
             counter++;
-            Console.Write("$\rEmbedding Movies: [{counter}/{movieDataForRag.Length}]");
+            Console.Write($"\rEmbedding Movies: {counter}/{movieDataForRag.Length}");
             await collection.UpsertAsync(new MovieVectorStoreRecord
             {
                 Id = Guid.NewGuid(),
@@ -29,9 +29,9 @@ public static class OriginalEmbedding
                 Plot = movie.Plot,
                 Rating = movie.Rating,
                 Year = movie.Year
-            });
-            Console.WriteLine();
-            Console.WriteLine("Embedding complete");
+            });            
         }
+        Console.WriteLine();
+        Console.WriteLine("Embedding complete");
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.Extensions.AI;
 using Microsoft.SemanticKernel.Connectors.SqlServer;
 using System.Text.Json;
 
-string jsonWithMovies = await File.ReadAllTextAsync("");
+string jsonWithMovies = await File.ReadAllTextAsync("mymovies.json");
 Movie[] movieDataForRag = JsonSerializer.Deserialize<Movie[]>(jsonWithMovies)!;
 
 AzureOpenAIClient client = new(new Uri(LLMConfig.Endpoint), new System.ClientModel.ApiKeyCredential(LLMConfig.ApiKey));
@@ -39,8 +39,11 @@ else
         importData = true;
     }
 }
-ChatMessage question = new(ChatRole.User, "What is the 3 highest rated adventure movies?");
-await Option1RephraseQuestion.Run(importData, movieDataForRag, question, client, collection);
+ChatMessage question = new(ChatRole.User, "What is the 3 highest rated Thriller movies?");
+//await Option1RephraseQuestion.Run(importData, movieDataForRag, question, client, collection);
+//await Option2EnhancedEmbedding.Run(importData,movieDataForRag,question,client, collection);
+await Option3CommonSense.Run(importData, movieDataForRag, question, client, collection);
+
 
 
 
