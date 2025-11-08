@@ -21,4 +21,8 @@ public class LLMConfig
     public static string Endpoint => configuration["AzureAI:Endpoint"] ?? throw new ArgumentNullException("AzureAI:Endpoint");
     public static string ApiKey => configuration["AzureAI:ApiKey"] ?? throw new ArgumentNullException("AzureAI:Api");
     public static string AzureAiFoundaryAgentEndpoint => configuration["AzureAI:FoundryAgentEndpoint"] ?? throw new ArgumentNullException("AzureAI:FoundryAgentEndpoint");
+
+    public static string OpenAIKey => configuration["OpenAIKey"] ?? throw new ArgumentNullException("OpenAIKey");
+
+    public static string BinApiKey => configuration["BingApiKey"] ?? throw new ArgumentNullException("BingApiKey");
 }

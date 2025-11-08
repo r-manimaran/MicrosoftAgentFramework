@@ -5,6 +5,7 @@ using Azure.Identity;
 using FileSearchTool;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
+using Shared;
 
 PersistentAgentsClient client = new PersistentAgentsClient(LLMConfig.AzureAiFoundaryAgentEndpoint, new AzureCliCredential());
 Response<PersistentAgent>? aiFoundryAgent = null; 
