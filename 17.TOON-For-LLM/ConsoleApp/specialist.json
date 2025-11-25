@@ -1,0 +1,80 @@
+[
+  {
+    "Name": "Marie Curie",
+    "Country": "Poland",
+    "Gender": "Female",
+    "Specialist": "Physics and Chemistry"
+  },
+  {
+    "Name": "Ada Lovelace",
+    "Country": "United Kingdom",
+    "Gender": "Female",
+    "Specialist": "Computer Programming"
+  },
+  {
+    "Name": "Malala Yousafzai",
+    "Country": "Pakistan",
+    "Gender": "Female",
+    "Specialist": "Education Activism"
+  },
+  {
+    "Name": "Hula Johnson",
+    "Country": "England",
+    "Gender": "Male",
+    "Specialist": "Computer Hacker"
+  },
+  {
+    "Name": "Cristiano Ronaldo",
+    "Country": "Portugal",
+    "Gender": "Male",
+    "Specialist": "Soccer"
+  },
+  {
+    "Name": "Lionel Messi",
+    "Country": "Argentina",
+    "Gender": "Male",
+    "Specialist": "Soccer"
+  },
+  {
+    "Name": "Elon Musk",
+    "Country": "United States",
+    "Gender": "Male",
+    "Specialist": "Technology Entrepreneurship"
+  },
+  {
+    "Name": "Bill Gates",
+    "Country": "United States",
+    "Gender": "Male",
+    "Specialist": "Technology Entrepreneurship, Philanthropy"
+  },
+  {
+    "Name": "Oprah Winfrey",
+    "Country": "United States",
+    "Gender": "Female",
+    "Specialist": "Television, Philanthropy"
+  },
+  {
+    "Name": "Dwayne Johnson",
+    "Country": "United States",
+    "Gender": "Male",
+    "Specialist": "Acting, Professional Wrestling"
+  },
+  {
+    "Name": "Taylor Swift",
+    "Country": "United States",
+    "Gender": "Female",
+    "Specialist": "Music"
+  },
+  {
+    "Name": "Justin Bieber",
+    "Country": "Canada",
+    "Gender": "Male",
+    "Specialist": "Music"
+  },
+  {
+    "Name": "Giorgia Meloni",
+    "Country": "Italy",
+    "Gender": "Female",
+    "Specialist": "Politics"
+  }
+]
