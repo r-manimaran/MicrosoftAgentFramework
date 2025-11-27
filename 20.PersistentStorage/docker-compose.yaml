@@ -1,0 +1,16 @@
+services:
+  documentdb:
+    image: ghcr.io/microsoft/documentdb/documentdb-local:latest
+    container_name: documentdb
+    ports:
+      - "10260:10260"
+    environment:
+      - USERNAME=at-test
+      - PASSWORD=test123456
+    restart: unless-stopped
+    # Optional persistent storage (create a named volume)
+    volumes:
+      - documentdb-data:/data
+
+volumes:
+  documentdb-data:
