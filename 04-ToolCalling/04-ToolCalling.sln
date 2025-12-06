@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolCalling.Advanced", "Too
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolCalling.MCP", "ToolCalling.MCP\ToolCalling.MCP.csproj", "{DB10B06A-A298-4FFA-8EB4-757C45C39864}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolCalling.ServiceInjection", "ToolCalling.ServiceInjection\ToolCalling.ServiceInjection.csproj", "{99D71A74-C35E-4E62-95BD-E2DD7D4018FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DB10B06A-A298-4FFA-8EB4-757C45C39864}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB10B06A-A298-4FFA-8EB4-757C45C39864}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB10B06A-A298-4FFA-8EB4-757C45C39864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99D71A74-C35E-4E62-95BD-E2DD7D4018FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99D71A74-C35E-4E62-95BD-E2DD7D4018FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99D71A74-C35E-4E62-95BD-E2DD7D4018FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99D71A74-C35E-4E62-95BD-E2DD7D4018FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
