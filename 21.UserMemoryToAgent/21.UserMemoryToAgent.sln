@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36705.20 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "21.UserMemoryToAgent", "21.UserMemoryToAgent.csproj", "{34071BC5-4FDB-4E53-A4CC-60DC466628E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34071BC5-4FDB-4E53-A4CC-60DC466628E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34071BC5-4FDB-4E53-A4CC-60DC466628E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34071BC5-4FDB-4E53-A4CC-60DC466628E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34071BC5-4FDB-4E53-A4CC-60DC466628E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {568707FE-0A6F-4926-B25B-F449FB43DB1D}
+	EndGlobalSection
+EndGlobal
