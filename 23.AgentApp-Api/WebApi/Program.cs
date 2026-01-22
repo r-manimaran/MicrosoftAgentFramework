@@ -31,6 +31,7 @@ builder.Services.AddOpenTelemetry()
             });
         }
     });
+
 builder.Services.AddSingleton<AIAgent>(sp =>
 {
     var config = sp.GetRequiredService<IConfiguration>();

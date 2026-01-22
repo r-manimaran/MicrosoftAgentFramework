@@ -20,7 +20,34 @@ public static class Middleware
                 functionCallDetails.Append($" {arg.Key}='{arg.Value}' ");
             }
         }
-        Console.WriteLine(functionCallDetails.ToString());
+        // Try to resolve an ILogger from the agent's service container (if any).
+        ILogger? logger = null;
+        try
+        {
+            var agentType = callingAgent.GetType();
+            var servicesProp = agentType.GetProperty("Services") ?? agentType.GetProperty("ServiceProvider");
+            var services = servicesProp?.GetValue(callingAgent) as IServiceProvider;
+            if (services != null)
+            {
+                // Prefer typed ILogger<Middleware> then ILoggerFactory fallback
+                logger = services.GetService(typeof(ILogger<Program>)) as ILogger<Program>
+                         ?? (services.GetService(typeof(ILoggerFactory)) as ILoggerFactory)?.CreateLogger("FunctionCallMiddleware");
+            }
+        }
+        catch
+        {
+            // Swallow any resolution exceptions and fall back to Console
+        }
+
+        if (logger != null)
+        {
+            logger.LogInformation(functionCallDetails.ToString());
+        }
+        else
+        {
+            Console.WriteLine(functionCallDetails.ToString());
+        }
+
         //Utils.WriteLineInformation(functionCallDetails.ToString());
         return await next(context, cancellationToken);
     }
