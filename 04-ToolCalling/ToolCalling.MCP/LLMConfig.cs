@@ -21,4 +21,6 @@ public class LLMConfig
     public static string Endpoint => configuration["AzureAI:Endpoint"] ?? throw new ArgumentNullException("AzureAI:Endpoint");
     public static string ApiKey => configuration["AzureAI:ApiKey"] ?? throw new ArgumentNullException("AzureAI:Api");
     public static string GitHubToken => configuration["GitHub:Token"] ?? throw new ArgumentNullException("GitHub:Token");
+
+    public static string GoogleMapsApiKey => configuration["Google:MapsApiKey"] ?? throw new ArgumentNullException("Google:MapsApiKey");
 }

@@ -10,7 +10,7 @@ using ToolCalling.MCP;
 AzureOpenAIClient client = new AzureOpenAIClient(new Uri(LLMConfig.Endpoint), new ApiKeyCredential(LLMConfig.ApiKey));
 
 // Create the MCP client with the GitHub Copilot API endpoint and authentication
-McpClient githubMcpClient = await McpClient.CreateAsync(new HttpClientTransport(new HttpClientTransportOptions
+/*McpClient githubMcpClient = await McpClient.CreateAsync(new HttpClientTransport(new HttpClientTransportOptions
 {
     TransportMode = HttpTransportMode.StreamableHttp,
     Endpoint = new Uri("https://api.githubcopilot.com/mcp/"),
@@ -18,18 +18,37 @@ McpClient githubMcpClient = await McpClient.CreateAsync(new HttpClientTransport(
     {
         { "Authorization", LLMConfig.GitHubToken }
     }
+}));*/
+
+// Create the MCP client with the Google Maps API MCP endpoint and authentication
+McpClient mapsMcpClient = await McpClient.CreateAsync(new HttpClientTransport(new HttpClientTransportOptions
+{
+    TransportMode = HttpTransportMode.StreamableHttp,
+    Endpoint = new Uri("https://mapstools.googleapis.com/mcp"),
+    AdditionalHeaders = new Dictionary<string, string>
+    {
+        {"X-Goog-Api-Key",LLMConfig.GoogleMapsApiKey }
+    }
 }));
 
-IList<McpClientTool> toolInGitHubMcp = await githubMcpClient.ListToolsAsync();
 
+//IList<McpClientTool> toolInGitHubMcp = await githubMcpClient.ListToolsAsync();
+IList<McpClientTool> toolInGoogleMapsMcp = await mapsMcpClient.ListToolsAsync();
+
+//AIAgent agent = client.GetChatClient(LLMConfig.DeploymentOrModelId)
+//    .CreateAIAgent(
+//        instructions:" You are a GitHub Expert",
+//        tools: toolInGitHubMcp.Cast<AITool>().ToList()
+//    ).AsBuilder()
+//    .Use(FunctionCallingMiddleware) // Enable function calling middleware
+//    .Build();
 AIAgent agent = client.GetChatClient(LLMConfig.DeploymentOrModelId)
     .CreateAIAgent(
-        instructions:" You are a GitHub Expert",
-        tools: toolInGitHubMcp.Cast<AITool>().ToList()
+        instructions: " You are a Google Map Expert",
+        tools: toolInGoogleMapsMcp.Cast<AITool>().ToList()
     ).AsBuilder()
     .Use(FunctionCallingMiddleware) // Enable function calling middleware
     .Build();
-
 AgentThread thread = agent.GetNewThread();
 
 while (true)
