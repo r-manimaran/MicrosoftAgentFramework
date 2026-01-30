@@ -10,7 +10,7 @@ using ToolCalling.MCP;
 AzureOpenAIClient client = new AzureOpenAIClient(new Uri(LLMConfig.Endpoint), new ApiKeyCredential(LLMConfig.ApiKey));
 
 // Create the MCP client with the GitHub Copilot API endpoint and authentication
-/*McpClient githubMcpClient = await McpClient.CreateAsync(new HttpClientTransport(new HttpClientTransportOptions
+McpClient githubMcpClient = await McpClient.CreateAsync(new HttpClientTransport(new HttpClientTransportOptions
 {
     TransportMode = HttpTransportMode.StreamableHttp,
     Endpoint = new Uri("https://api.githubcopilot.com/mcp/"),
@@ -18,7 +18,7 @@ AzureOpenAIClient client = new AzureOpenAIClient(new Uri(LLMConfig.Endpoint), ne
     {
         { "Authorization", LLMConfig.GitHubToken }
     }
-}));*/
+}));
 
 // Create the MCP client with the Google Maps API MCP endpoint and authentication
 McpClient mapsMcpClient = await McpClient.CreateAsync(new HttpClientTransport(new HttpClientTransportOptions
@@ -32,23 +32,25 @@ McpClient mapsMcpClient = await McpClient.CreateAsync(new HttpClientTransport(ne
 }));
 
 
-//IList<McpClientTool> toolInGitHubMcp = await githubMcpClient.ListToolsAsync();
+IList<McpClientTool> toolInGitHubMcp = await githubMcpClient.ListToolsAsync();
 IList<McpClientTool> toolInGoogleMapsMcp = await mapsMcpClient.ListToolsAsync();
 
-//AIAgent agent = client.GetChatClient(LLMConfig.DeploymentOrModelId)
-//    .CreateAIAgent(
-//        instructions:" You are a GitHub Expert",
-//        tools: toolInGitHubMcp.Cast<AITool>().ToList()
-//    ).AsBuilder()
-//    .Use(FunctionCallingMiddleware) // Enable function calling middleware
-//    .Build();
 AIAgent agent = client.GetChatClient(LLMConfig.DeploymentOrModelId)
+    .CreateAIAgent(
+        instructions: " You are a GitHub Expert and Google Maps Expert. Analyze the user query and use appropriate tools from the MCP",
+        tools: toolInGitHubMcp.Cast<AITool>().Concat(toolInGoogleMapsMcp.Cast<AITool>()).ToList()            
+    ).AsBuilder()
+    .Use(FunctionCallingMiddleware) // Enable function calling middleware
+    .Build();
+
+/*AIAgent agent = client.GetChatClient(LLMConfig.DeploymentOrModelId)
     .CreateAIAgent(
         instructions: " You are a Google Map Expert",
         tools: toolInGoogleMapsMcp.Cast<AITool>().ToList()
     ).AsBuilder()
     .Use(FunctionCallingMiddleware) // Enable function calling middleware
-    .Build();
+    .Build();*/
+
 AgentThread thread = agent.GetNewThread();
 
 while (true)
@@ -79,5 +81,13 @@ async ValueTask<object?> FunctionCallingMiddleware(AIAgent callingAgent, Functio
         functionCallDetails.AppendLine(string.Join(Environment.NewLine, context.Arguments.Select(kv => $"  - {kv.Key}: {kv.Value}")));
     }
     Utils.WriteLineInformation(functionCallDetails.ToString());
-    return await next(context, token);
+    try 
+    {
+        return await next(context, token);
+    }
+    catch (Exception ex)
+    {
+        Utils.WriteLineError($"Tool call failed: {ex.Message}");
+        throw;
+    }
 }
