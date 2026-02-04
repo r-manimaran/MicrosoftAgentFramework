@@ -124,3 +124,12 @@ This helps understand the cost implications of different reasoning effort levels
 ![alt text](image.png)
 
 ![alt text](image-1.png)
+
+
+# Reasoning using OpenAI
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+![alt text](image-4.png)
