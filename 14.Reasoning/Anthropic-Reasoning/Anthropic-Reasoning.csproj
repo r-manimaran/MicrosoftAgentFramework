@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>Anthropic_Reasoning</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>dd557ec7-9edd-4f78-9f45-3fbf7745f498</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AgentFrameworkToolkit.Anthropic" Version="1.0.0-preview.260205.1" />
+    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0-preview.260205.1" />
+    <PackageReference Include="Microsoft.Agents.AI.Anthropic" Version="1.0.0-preview.260205.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+    <PackageReference Include="Azure.AI.OpenAI" Version="2.8.0-beta.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
