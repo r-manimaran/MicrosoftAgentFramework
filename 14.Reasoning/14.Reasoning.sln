@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAIReasoning", "OpenAIRe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAI-Reasoning", "GoogleAI-Reasoning\GoogleAI-Reasoning.csproj", "{5D666979-A450-411B-AC63-0D84166646DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anthropic-Reasoning", "Anthropic-Reasoning\Anthropic-Reasoning.csproj", "{D3249FC1-4FAC-4C41-9338-5B7BDD875F27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5D666979-A450-411B-AC63-0D84166646DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D666979-A450-411B-AC63-0D84166646DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D666979-A450-411B-AC63-0D84166646DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3249FC1-4FAC-4C41-9338-5B7BDD875F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3249FC1-4FAC-4C41-9338-5B7BDD875F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3249FC1-4FAC-4C41-9338-5B7BDD875F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3249FC1-4FAC-4C41-9338-5B7BDD875F27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
