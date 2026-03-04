@@ -25,9 +25,11 @@ var azureOpenAi = new AzureOpenAIClient(
 
 var chatClient = azureOpenAi.GetChatClient("gpt-4o-mini").AsIChatClient();
 builder.Services.AddSingleton(azureOpenAi);
-builder.Services.AddSingleton(chatClient);
 
+ChatClientAgent agent = chatClient.CreateAIAgent();
+builder.Services.AddKeyedSingleton("ChatAgent",agent);
 
+/*
 // Register the AI Agent using the Agent Framework
 builder.AddAIAgent("ChatAgent", (sp, key) =>
 {
@@ -50,7 +52,7 @@ builder.AddAIAgent("ChatAgent", (sp, key) =>
     .Build();
 
     return aiAgent;
-});
+});*/
 
 var embeddingGenerator = azureOpenAi.GetEmbeddingClient("text-embedding-3-small").AsIEmbeddingGenerator();
 var vectorStorePath = Path.Combine(AppContext.BaseDirectory, "vector-store.db");

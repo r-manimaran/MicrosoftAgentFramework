@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Project Path="ConsoleApp/ConsoleApp.csproj" />
+  <Project Path="Example2/Example2.csproj" />
+  <Project Path="Shared/Shared.csproj" />
+</Solution>

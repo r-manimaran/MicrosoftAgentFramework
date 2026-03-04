@@ -1,7 +1,7 @@
 ﻿@page "/"
 @using System.ComponentModel
 @using Microsoft.Agents.AI
-@* @inject IChatClient ChatClient *@
+@inject IChatClient ChatClient 
 @inject IServiceProvider ServiceProvider
 @inject NavigationManager Nav
 @inject SemanticSearch Search
@@ -49,12 +49,12 @@
     private ChatInput? chatInput;
     private ChatSuggestions? chatSuggestions;
 
-    private AIAgent aiAgent = default!;
+    private ChatClientAgent aiAgent = default!;
 
     protected override void OnInitialized()
     {
         // Agent Framework change: Resolve the Keyed AI agent registed as "ChatAgent" in program.cs
-        aiAgent = ServiceProvider.GetRequiredKeyedService<AIAgent>("ChatAgent");
+        aiAgent = ServiceProvider.GetRequiredKeyedService<ChatClientAgent>("ChatAgent");
 
         messages.Add(new(ChatRole.System, SystemPrompt));
         chatOptions.Tools = [AIFunctionFactory.Create(SearchAsync)];
@@ -73,14 +73,18 @@
         var responseText = new TextContent("");
         currentResponseMessage = new ChatMessage(ChatRole.Assistant, [responseText]);
         currentResponseCancellation = new();
-        /* Commented the original code to use the Microsoft Agent 
+        //Commented the original code to use the Microsoft Agent 
         await foreach (var update in ChatClient.GetStreamingResponseAsync([.. messages], chatOptions, currentResponseCancellation.Token))
         {
             messages.AddMessages(update, filter: c => c is not TextContent);
             responseText.Text += update.Text;
             ChatMessageItem.NotifyChanged(currentResponseMessage);
             }
-        */
+        
+
+       /* var res = await aiAgent.RunAsync(
+            messages: messages,
+             cancellationToken: currentResponseCancellation.Token);
 
         await foreach(var update in aiAgent.RunStreamingAsync(
                 messages:messages, //.Skip(statefulMessageCount),
@@ -91,7 +95,8 @@
             responseText.Text += update.Text;
             chatOptions.ConversationId = responseUpdate.ConversationId;
             ChatMessageItem.NotifyChanged(currentResponseMessage);
-        }
+        }*/
+
         // Store the final response in the conversation, and begin getting suggestions
         messages.Add(currentResponseMessage!);
         currentResponseMessage = null;

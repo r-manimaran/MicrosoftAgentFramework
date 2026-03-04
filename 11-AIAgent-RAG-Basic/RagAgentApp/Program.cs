@@ -26,7 +26,7 @@ string jsonMovies = await File.ReadAllTextAsync("mymovies.json");
 
 Movie[] moviesDataForRAG = JsonSerializer.Deserialize<Movie[]>(jsonMovies)!;
 
-ChatMessage question = new ChatMessage(ChatRole.User, "List 3 highest rated adventure movies (list their title, plot, year and rating ?");
+ChatMessage question = new ChatMessage(ChatRole.User, "List 3 highest rated Thriller movies (list their title, plot, year and rating ?");
 
 ChatClientAgent agent = chatClient.CreateAIAgent(instructions: "You are an expert on a set of fictious movies given to you. (don't have any idea about real world movies");
 
