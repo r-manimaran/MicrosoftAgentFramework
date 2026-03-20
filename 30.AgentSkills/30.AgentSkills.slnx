@@ -4,5 +4,6 @@
   </Folder>
   <Project Path="ConsoleApp/ConsoleApp.csproj" />
   <Project Path="Example2/Example2.csproj" />
+  <Project Path="ITHelpDeskAgent/ITHelpDeskAgent.csproj" Id="8b15f9dc-e705-46bf-85b1-f72a3f3b337d" />
   <Project Path="Shared/Shared.csproj" />
 </Solution>
