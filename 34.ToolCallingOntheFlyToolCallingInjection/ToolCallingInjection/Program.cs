@@ -1,11 +1,13 @@
 ﻿using AgentFrameworkToolkit.Tools.Common;
 using Azure.AI.OpenAI;
+using JetBrains.Annotations;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI.Chat;
 using System.Text;
 using ToolCallingInjection;
 using ToolCallingInjection.Extensions;
+using ChatMessage = Microsoft.Extensions.AI.ChatMessage;
 
 Console.WriteLine("Normal (N) are Inject Mode (I)?:");
 var key = Console.ReadKey();
@@ -61,15 +63,20 @@ async Task NormalAgentWithTools()
 async Task ToolInjection()
 {
     AzureOpenAIClient client = new AzureOpenAIClient(new Uri(LLMConfig.Endpoint), new System.ClientModel.ApiKeyCredential (LLMConfig.ApiKey));
-    ChatClientAgent toolnjectionAgent = client.GetChatClient("gpt-4o-mini").AsAIAgent(
-        instructions: "Your job is to tell if any given message is a request to use specific tools");
+    ChatClientAgent toolinjectionAgent = client.GetChatClient("gpt-4o-mini")
+                                               .AsAIAgent(
+                                    instructions: "Your job is to tell if any given message is a request to use specific tools");
 
     AIAgent mainAgent = client.GetChatClient(LLMConfig.DeploymentOrModelId).AsAIAgent(new ChatClientAgentOptions
     {
-        AIContextProviders = (_, _) => ValueTask.FromResult<AIContextProvider>(new OnTheFlyToolInjectionContext(toolinjectionAgent))
-    }).AsBuilder().Use(FunctionCallMiddleware).Build();
+        AIContextProviders = [new OnTheFlyToolInjectionContext(toolinjectionAgent)]
+    })
+    .AsBuilder()
+    .Use(FunctionCallMiddleware)
+    .Build();
 
     Utils.WriteLine("This agent have : 0 tools", ConsoleColor.Green);
+    
     while (true)
     {
         Console.Write("> ");
@@ -82,8 +89,8 @@ async Task ToolInjection()
 }
 
 async ValueTask<object?> FunctionCallMiddleware(AIAgent callingAgent, FunctionInvocationContext context,
-    Func<FunctionInvocationContext, CancellationToken, ValueTask<object?>> next,
-    CancellationToken cancellationToken = default)
+                                    Func<FunctionInvocationContext, CancellationToken, ValueTask<object?>> next,
+                                    CancellationToken cancellationToken = default)
 {
     StringBuilder functionCallDetails = new();
     functionCallDetails.Append($" - Tool call :'{context.Function.Name}' [Agent:{callingAgent.Name}]");
@@ -99,7 +106,61 @@ async ValueTask<object?> FunctionCallMiddleware(AIAgent callingAgent, FunctionIn
     return await next(context, cancellationToken);
 }
 
-class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent): AIContextProvider
+class OnTheFlyToolInjectionContext(ChatClientAgent toolInjectionAgent) : AIContextProvider
 {
-    public override 
+    protected override async ValueTask<AIContext> ProvideAIContextAsync(InvokingContext context, CancellationToken cancellationToken = default)
+    {
+        IEnumerable<ChatMessage> messages = context.AIContext.Messages ?? [];
+
+        AgentResponse<ToolResult> response = await toolInjectionAgent.RunAsync<ToolResult>(messages, 
+                                                                cancellationToken: cancellationToken);
+        List<AITool> injectedTools = [];
+
+        string? injectedInstructions = null;
+        
+        ToolResult toolResult = response.Result;
+
+        if (toolResult.NeedTimeTools)
+        {
+            Utils.Green("Time tools injected");
+            injectedTools.AddRange(TimeTools.All());
+        }
+
+        if (toolResult.NeedFileSystemTools)
+        {
+            Utils.Green("File System Tools injected");
+            injectedTools.AddRange(FileSystemTools.All(new FileSystemToolsOptions
+            {
+                ConfinedToTheseFolderPaths = ["C:\\TestAI"]
+            }));
+            injectedInstructions = "When working with files your root folder is 'C:\\TestAI'";
+        }
+
+        if (toolResult.NeedWeatherTools)
+        {
+            Utils.Green("Weather Tools injected");
+            injectedTools.AddRange(WeatherTools.All(new OpenWeatherMapOptions
+            {
+                ApiKey = LLMConfig.OpenWeatherApiKey,
+                PreferredUnits = WeatherOptionsUnits.Metric
+            }));
+        }
+
+        Utils.Green($"Number of tool's injected: {injectedTools.Count}");
+
+        return new AIContext
+        {
+            Instructions = injectedInstructions,
+            Tools = injectedTools
+        };
+    }
+    
+    [PublicAPI]
+    private class ToolResult
+    {
+        public bool NeedFileSystemTools { get; set; }
+        public bool NeedWeatherTools { get; set; }
+        public bool NeedTimeTools { get; set; }
+    }
 }
+   
