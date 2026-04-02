@@ -1,4 +1,5 @@
-﻿using MCPapp.Server.Services;
+﻿using MCPapp.Server;
+using MCPapp.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,11 +49,26 @@ builder.Services.AddMcpServer()
     })
     .WithToolsFromAssembly(typeof(Program).Assembly); // auto-register all tools in this assembly
 
+// Add OpenAPI doc Capability
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddOpenApi("swagger", o=>
+{
+    // For swagger.json
+    o.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi2_0;
+    o.AddDocumentTransformer<McpDocumentTransformer>();
+});
+builder.Services.AddOpenApi("openapi", o =>
+{
+    // For openapi.json
+    o.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
+    o.AddDocumentTransformer<McpDocumentTransformer>();
+});
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Hello World from MCP Server!");
 app.MapMcp("/mcp"); // Map the MCP server to /mcp endpoint
-
+app.MapOpenApi("/{documentName}.json"); // Map OpenAPI docs to /{documentName}/openapi.json)
 app.Run();
 
 // ── Helper ────────────────────────────────────────────────────────────────────
