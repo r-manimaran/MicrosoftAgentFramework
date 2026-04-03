@@ -1586,3 +1586,15 @@
 ## Currency Converter
 
 ![alt text](image.png)
+
+## Calling MCP Server Tool from Agent Framework Agent with API Key Authentication.
+
+- Using Admin Api Key
+
+![alt text](image-1.png)
+
+- Using Normal user Api Key
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)

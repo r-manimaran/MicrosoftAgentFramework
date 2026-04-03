@@ -5,25 +5,29 @@ using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpClient("mcp-server", client =>
+builder.Services.AddHttpClient("mcp-server", (sp,client) =>
 {
+    var config = sp.GetRequiredService<IConfiguration>();
     // static key baked in at startup
-    client.DefaultRequestHeaders.Add("X-Api-Key", "admin-key-123");
+    //client.DefaultRequestHeaders.Add("X-Api-Key", "admin-key-123");
+    client.DefaultRequestHeaders.Add("X-Api-Key", config["McpServer:ApiKey"]);
 });
 
 builder.Services.AddSingleton<IClientTransport>(sp =>
 {
+    var config = sp.GetRequiredService<IConfiguration>();
     var httpClient = sp.GetRequiredService<IHttpClientFactory>().CreateClient("mcp-server");
 
     return new HttpClientTransport(
         new HttpClientTransportOptions
         {
-            Endpoint = new Uri("https://localhost:7249/mcp"),
-            AdditionalHeaders = new Dictionary<string, string>
-            {
-                // readonly-key-456
-                ["X-Api-Key"] = "admin-key-123"
-            }
+           // Endpoint = new Uri("https://localhost:7249/mcp"),
+            Endpoint = new Uri(config["McpServer:Url"]!),
+            //AdditionalHeaders = new Dictionary<string, string>
+            //{
+            //    // readonly-key-456
+            //    ["X-Api-Key"] = "admin-key-123"
+            //}
         },
         httpClient,
         ownsHttpClient: false);
