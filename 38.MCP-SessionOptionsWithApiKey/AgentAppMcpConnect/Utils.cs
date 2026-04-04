@@ -31,6 +31,10 @@ public static class Utils
         WriteLine(message, ConsoleColor.Green);
     }
 
+   public static void Gray(string message)
+   {
+        WriteLine(message, ConsoleColor.DarkGray);
+   }
     public static void WriteLine(string text, ConsoleColor color)
     {
         ConsoleColor currentColor = Console.ForegroundColor;

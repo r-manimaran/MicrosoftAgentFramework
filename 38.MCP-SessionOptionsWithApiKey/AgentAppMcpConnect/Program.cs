@@ -1,4 +1,5 @@
 ﻿using AgentAppMcpConnect;
+using AgentAppMcpConnect.Extensions;
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
@@ -36,6 +37,7 @@ foreach (var tool in toolsInMcp)
     Utils.WriteLineSuccess($"- {tool.Name}");
 }
 
+// -- Create the AIAgent
 AIAgent agent = client.GetChatClient(LLMConfig.DeploymentOrModelId)
     .AsAIAgent(
     instructions: "You are a helpful assistant that can use tools to answer questions.",
@@ -48,16 +50,19 @@ while (true)
 {
     Console.Write("User:>");
     string userInput = Console.ReadLine() ?? string.Empty;
-    if (string.IsNullOrEmpty(userInput))
+    if (string.IsNullOrEmpty(userInput) || userInput.Equals("exit", StringComparison.OrdinalIgnoreCase))
     {
         break;
     }
     var userMessage = new Microsoft.Extensions.AI.ChatMessage(ChatRole.User, userInput);
     AgentResponse response = await agent.RunAsync(userMessage);
+    response.Usage.OutputAsInformation();
     Console.WriteLine($"Agent:>{response}");
     Utils.Separator();
 }
 
+
+// -- Middleware
 async ValueTask<object?> FunctionCallingMiddleware(AIAgent callingAgent, FunctionInvocationContext context,
     Func<FunctionInvocationContext, CancellationToken, ValueTask<object?>> next,
     CancellationToken token)
