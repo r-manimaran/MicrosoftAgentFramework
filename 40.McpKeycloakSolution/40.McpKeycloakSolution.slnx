@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="40.McpKeycloakSolution.AppHost/40.McpKeycloakSolution.AppHost.csproj" />
+  <Project Path="40.McpKeycloakSolution.ServiceDefaults/40.McpKeycloakSolution.ServiceDefaults.csproj" />
+  <Project Path="AgentMCPClient/AgentMCPClient.csproj" Id="ff23d921-24cb-4abd-80d4-89aafbe23d4c" />
+  <Project Path="McpCliClient/McpCliClient.csproj" />
+  <Project Path="McpServer/McpServer.csproj" />
+</Solution>

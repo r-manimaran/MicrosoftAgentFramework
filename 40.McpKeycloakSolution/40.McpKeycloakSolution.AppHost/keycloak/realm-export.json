@@ -1,0 +1,58 @@
+{
+  "realm": "mcp-realm",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "mcp-cli",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "attributes": {
+        "oauth2.device.authorization.grant.enabled": "true"
+      },
+      "redirectUris": [],
+      "webOrigins": []
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "mcp-user",
+        "description": "Can call MCP tools"
+      },
+      {
+        "name": "mcp-admin",
+        "description": "Full MCP access"
+      }
+    ]
+  },
+  "users": [
+    {
+      "username": "testuser",
+      "enabled": true,
+      "email": "test@example.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [ "mcp-user" ]
+    },
+    {
+      "username": "adminuser",
+      "enabled": true,
+      "email": "adminuser@example.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [ "mcp-admin" ]
+    }
+  ]
+}
