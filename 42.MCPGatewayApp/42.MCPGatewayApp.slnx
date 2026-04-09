@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="McpAgentApp/McpAgentApp.csproj" />
+  <Project Path="McpGateway.Api/McpGateway.Api.csproj" />
+  <Project Path="McpGateway.Core/McpGateway.Core.csproj" />
   <Project Path="MCPServer/MCPServer.csproj" />
 </Solution>
