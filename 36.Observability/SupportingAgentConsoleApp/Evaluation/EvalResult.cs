@@ -12,5 +12,7 @@ public record EvalResult(
     double RelevanceScore,
     double HallucinationScore,
     double SafetyScore,
+    string HallucinationRisk,
+    string SafetyViolations,
     DateTime EvaluatedAt);
 

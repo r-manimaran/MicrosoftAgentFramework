@@ -1,0 +1,14 @@
+services:
+    seq:
+        image: "docker.io/datalust/seq:2024.3"
+        container_name: "seq"
+        environment:
+            ACCEPT_EULA: "Y"
+        ports:
+            - "5341:5341"
+            - "8001:80"
+        networks:
+            - "llm"     
+networks:
+  llm:
+    driver: "bridge"

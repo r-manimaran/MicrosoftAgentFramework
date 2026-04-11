@@ -29,4 +29,8 @@ public class LLMConfig
     public static int OutputCostPer1kTokens => int.TryParse(configuration["LLM:OutputCostPer1kTokens"], out var outputCost) ? outputCost : 0;
     public static string JudgeModel => configuration["LLM:JudgeModel"] ?? "gpt-4o-mini";
 
+    //Open Telemetry Seq settings
+    public static string SeqServerUrl => configuration["Seq:ServerUrl"] ?? throw new ArgumentNullException("Seq:ServerUrl");
+    public static string SeqApiKey => configuration["Seq:ApiKey"] ?? throw new ArgumentNullException("Seq:ApiKey");
+
 }

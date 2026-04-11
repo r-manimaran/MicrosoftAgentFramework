@@ -5,10 +5,12 @@ using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI.Chat;
 using OpenTelemetry;
+using OpenTelemetry.Exporter;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using SupportingAgentConsoleApp;
+using SupportingAgentConsoleApp.Alerting;
 using SupportingAgentConsoleApp.Config;
 using SupportingAgentConsoleApp.Evaluation;
 using SupportingAgentConsoleApp.Evaluation.Scorers;
@@ -34,7 +36,28 @@ if (!string.IsNullOrWhiteSpace(LLMConfig.ApplicationInsightsConnectionString))
     tracerBuilder.AddAzureMonitorTraceExporter(
         o => o.ConnectionString = LLMConfig.ApplicationInsightsConnectionString);
 
-using TracerProvider tracerProvider = tracerBuilder.Build();
+// -- Seq
+OtlpTraceExporter seqTraceExporter = null;
+if(!string.IsNullOrWhiteSpace(LLMConfig.SeqServerUrl))
+{
+   seqTraceExporter = new OtlpTraceExporter(new OtlpExporterOptions
+    {
+        Endpoint = new Uri($"{LLMConfig.SeqServerUrl}/ingest/otlp/v1/traces"),
+        Protocol = OtlpExportProtocol.HttpProtobuf,
+        Headers = string.IsNullOrWhiteSpace(LLMConfig.SeqApiKey)
+                    ? string.Empty
+                    : $"X-Seq-ApiKey={LLMConfig.SeqApiKey}",
+    });
+    
+}
+using TracerProvider tracerProvider = Sdk.CreateTracerProviderBuilder()
+                  .SetResourceBuilder(resourceBuilder)
+                  .AddSource(AgentTelemetry.SourceName)
+                  .AddHttpClientInstrumentation()
+                  .AddConsoleExporter()
+                  .AddProcessor(new SimpleActivityExportProcessor(seqTraceExporter))
+                  .Build()!;
+// using TracerProvider tracerProvider = tracerBuilder.Build();
 
 var meterBuilder = Sdk.CreateMeterProviderBuilder()
     .SetResourceBuilder(resourceBuilder)
@@ -45,7 +68,68 @@ if (!string.IsNullOrWhiteSpace(LLMConfig.ApplicationInsightsConnectionString))
     meterBuilder.AddAzureMonitorMetricExporter(
         o => o.ConnectionString = LLMConfig.ApplicationInsightsConnectionString);
 
-using MeterProvider meterProvider = meterBuilder.Build();
+// -- Seq
+OtlpTraceExporter seqMetricExporter =null;
+if (!string.IsNullOrWhiteSpace(LLMConfig.SeqServerUrl))
+{
+
+    seqMetricExporter = new OtlpTraceExporter(new OtlpExporterOptions
+    {
+        Endpoint = new Uri($"{LLMConfig.SeqServerUrl}/ingest/otlp/v1/metrics"),
+        Protocol = OtlpExportProtocol.HttpProtobuf,
+        Headers = string.IsNullOrWhiteSpace(LLMConfig.SeqApiKey)
+                   ? string.Empty
+                   : $"X-Seq-ApiKey={LLMConfig.SeqApiKey}",
+    });
+
+  
+}
+using TracerProvider metricsProvider = Sdk.CreateTracerProviderBuilder()
+                .SetResourceBuilder(resourceBuilder)
+                .AddSource(AgentTelemetry.SourceName)
+                .AddHttpClientInstrumentation()
+                .AddConsoleExporter()
+                .AddProcessor(new SimpleActivityExportProcessor(seqMetricExporter))
+                .Build()!;
+
+
+//using MeterProvider meterProvider = meterBuilder.Build();
+
+Console.WriteLine($"  Seq        : {(string.IsNullOrWhiteSpace(LLMConfig.SeqServerUrl) ? "disabled" : LLMConfig.SeqServerUrl)}");
+
+// --------------------------------
+// Alert dispatcher options - read from environment variables
+var alertOptions = new AlertDispatcherOptions
+{
+    // Score thresholds - lower than these triggers an alert
+    SafetyThreshold = double.Parse(Environment.GetEnvironmentVariable("ALERT_SAFETY_THRESHOLD") ?? "0.7"),
+    HallucinationThreshold = double.Parse(Environment.GetEnvironmentVariable("ALERT_HALLUCINATION_THRESHOLD") ?? "0.5"),
+    RelevanceThreshold = double.Parse(Environment.GetEnvironmentVariable("ALERT_RELEVANCE_THRESHOLD") ?? "0.6"),
+
+    // Cooldown — prevents the same dimension alerting more than once per window
+    CooldownWindow = TimeSpan.FromMinutes(
+        int.Parse(Environment.GetEnvironmentVariable("ALERT_COOLDOWN_MINUTES") ?? "5")),
+
+    // Seq span events — always on if OTel is configured
+    SeqEnabled = true,
+
+    // Webhook — set ALERT_WEBHOOK_URL to enable (leave empty to skip)
+    WebhookUrl = Environment.GetEnvironmentVariable("ALERT_WEBHOOK_URL") ?? string.Empty,
+    WebhookFormat = Enum.Parse<WebhookFormat>(
+                        Environment.GetEnvironmentVariable("ALERT_WEBHOOK_FORMAT") ?? "Generic",
+                        ignoreCase: true),
+
+    // Only needed when WebhookFormat = PagerDuty
+    PagerDutyRoutingKey = Environment.GetEnvironmentVariable("PAGERDUTY_ROUTING_KEY") ?? string.Empty,
+};
+
+var alertDispatcher = new AlertDispatcher(alertOptions);
+Console.WriteLine($"[Init] AlertDispatcher ready.");
+Console.WriteLine($" Safety threshold       : {alertOptions.SafetyThreshold}");
+Console.WriteLine($" Hallucination threshold: {alertOptions.HallucinationThreshold}");
+Console.WriteLine($" Relevance threshold    : {alertOptions.RelevanceThreshold}");
+Console.WriteLine($" Cooldown window        : {alertOptions.CooldownWindow.TotalMinutes} min");
+Console.WriteLine($" Webhook                : {(string.IsNullOrWhiteSpace(alertOptions.WebhookUrl) ? "disabled" : alertOptions.WebhookFormat.ToString())}");
 
 
 // -- Dependency Injection
@@ -68,13 +152,13 @@ if (!string.IsNullOrWhiteSpace(LLMConfig.EvalStoreConnectionString))
     var hallucinationScorer = new HallucinationScorer(LLMConfig.Endpoint, LLMConfig.ApiKey, LLMConfig.JudgeModel);
     var safetyScorer = new SafetyScorer(LLMConfig.Endpoint, LLMConfig.ApiKey, LLMConfig.JudgeModel);
 
-    evalPipeline = new EvalPipeline(relevanceScorer, hallucinationScorer, safetyScorer, LLMConfig.EvalStoreConnectionString);
+    evalPipeline = new EvalPipeline(relevanceScorer, hallucinationScorer, safetyScorer, alertDispatcher, LLMConfig.EvalStoreConnectionString);
 
     Console.WriteLine("[Init] EvalPipeline initialized with all 3 scorers.");
 }
 else
 {
-    Console.WriteLine("[Init] EvalPipeline skipped — EVAL_STORE_CONNECTION_STRING not set.");
+    Console.WriteLine("[Init] EvalPipeline skipped (no eval store) — EVAL_STORE_CONNECTION_STRING not set.");
 }
 
 // -- Cost Tracker -emits token usage as OTel metrics; always active
