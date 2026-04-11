@@ -6,3 +6,6 @@
 
 - Run Agent Connecting directly to the MCP server.
 ![alt text](image.png)
+
+Direct MCP Server Access Flow and Gateway Flow
+![alt text](image-1.png)

@@ -49,6 +49,10 @@ builder.Services.AddSingleton<IMcpGateway, McpGatewayPipeline>();
 
 builder.Services.AddHealthChecks();
 
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+
 var app = builder.Build();
 
 app.MapHealthChecks("/health");
@@ -57,7 +61,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
+app.MapControllers();
 // app.UseHttpsRedirection();
 
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
