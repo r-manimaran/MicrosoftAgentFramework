@@ -1,0 +1,29 @@
+<Solution>
+  <Folder Name="/.github/" />
+  <Folder Name="/.github/workflows/">
+    <File Path="deploy-prod.yml" />
+    <File Path="deploy-staging.yml" />
+    <File Path="pre-validate.yml" />
+  </Folder>
+  <Folder Name="/infra/">
+    <File Path="main.bicep" />
+  </Folder>
+  <Folder Name="/infra/modules/">
+    <File Path="keyvault.bicep" />
+    <File Path="monitoring.bicep" />
+    <File Path="qdrant.bicep" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="MdRag.AgentCore/MdRag.AgentCore.csproj" />
+    <Project Path="MdRag.Api/MdRag.Api.csproj" />
+    <Project Path="MdRag.Contracts/MdRag.Contracts.csproj" />
+    <Project Path="MdRag.Infrastructure/MdRag.Infrastructure.csproj" />
+    <Project Path="MdRag.Ingestion/MdRag.Ingestion.csproj" />
+    <Project Path="MdRag.ServiceDefaults/MdRag.ServiceDefaults.csproj" />
+    <Project Path="MdRag.Web/MdRag.Web.csproj" />
+  </Folder>
+  <Folder Name="/src/Aspire/">
+    <Project Path="MdRag.AppHost/MdRag.AppHost.csproj" />
+    <Project Path="MdRag.Shared/MdRag.Shared.csproj" />
+  </Folder>
+</Solution>
