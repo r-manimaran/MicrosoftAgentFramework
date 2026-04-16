@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MdRag.Ingestion.Services
+namespace MdRag.Ingestion.Services;
+
+public sealed class QdrantUpsertService
 {
-    internal class QdrantUpsertService
-    {
-    }
 }
