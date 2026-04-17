@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AgentWithMemory_01_ChatHistoryMemory/AgentWithMemory_01_ChatHistoryMemory.csproj" />
+  <Project Path="Shared/Shared.csproj" />
+</Solution>

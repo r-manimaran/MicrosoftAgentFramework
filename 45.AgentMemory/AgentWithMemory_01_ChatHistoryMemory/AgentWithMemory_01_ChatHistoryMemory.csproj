@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>82fed380-7fc4-4e3a-8a19-f4193da68210</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.AI.OpenAI" Version="2.9.0-beta.1" />
+    <PackageReference Include="Microsoft.Agents.AI" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Agents.AI.AzureAI" Version="1.0.0-rc5" />
+    <PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="10.5.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.InMemory" Version="1.74.0-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+
+</Project>
