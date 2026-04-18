@@ -19,11 +19,11 @@
     <Project Path="MdRag.Contracts/MdRag.Contracts.csproj" />
     <Project Path="MdRag.Infrastructure/MdRag.Infrastructure.csproj" />
     <Project Path="MdRag.Ingestion/MdRag.Ingestion.csproj" />
-    <Project Path="MdRag.ServiceDefaults/MdRag.ServiceDefaults.csproj" />
+    <Project Path="MdRag.Shared/MdRag.Shared.csproj" />
     <Project Path="MdRag.Web/MdRag.Web.csproj" />
   </Folder>
   <Folder Name="/src/Aspire/">
     <Project Path="MdRag.AppHost/MdRag.AppHost.csproj" />
-    <Project Path="MdRag.Shared/MdRag.Shared.csproj" />
+    <Project Path="MdRag.ServiceDefaults/MdRag.ServiceDefaults.csproj" />
   </Folder>
 </Solution>

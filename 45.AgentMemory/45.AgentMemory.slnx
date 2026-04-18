@@ -1,4 +1,7 @@
 <Solution>
   <Project Path="AgentWithMemory_01_ChatHistoryMemory/AgentWithMemory_01_ChatHistoryMemory.csproj" />
+  <Project Path="AgentWithMemory_02_MemoryUsingMem0/AgentWithMemory_02_MemoryUsingMem0.csproj" />
+  <Project Path="AgentWithMemory_03_MemoryUsingFoundry/AgentWithMemory_03_MemoryUsingFoundry.csproj" />
+  <Project Path="AgentWithMemory_04_BoundedChatHistory/AgentWithMemory_04_BoundedChatHistory.csproj" />
   <Project Path="Shared/Shared.csproj" />
 </Solution>

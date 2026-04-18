@@ -1,6 +1,0 @@
-@MdRag.Api_HostAddress = http://localhost:5048
-
-GET {{MdRag.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

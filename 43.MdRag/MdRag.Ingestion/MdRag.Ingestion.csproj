@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MdRag.Contracts\MdRag.Contracts.csproj" />
+    <ProjectReference Include="..\MdRag.Infrastructure\MdRag.Infrastructure.csproj" />
     <ProjectReference Include="..\MdRag.ServiceDefaults\MdRag.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\MdRag.Shared\MdRag.Shared.csproj" />
   </ItemGroup>
 </Project>

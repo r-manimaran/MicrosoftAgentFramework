@@ -555,3 +555,5 @@ This repository contains 27 projects demonstrating various aspects of the Micros
 6. **Production-Ready** with Azure deployment, managed identity, and durable agents
 7. **Developer-Friendly** with simplified APIs, YAML config, and toolkits
 8. **Cost-Conscious** with token tracking and optimization techniques
+
+AIContextProvider allows the 
