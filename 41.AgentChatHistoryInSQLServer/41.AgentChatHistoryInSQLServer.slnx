@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="41.AgentChatHistoryInSQLServer.AppHost/41.AgentChatHistoryInSQLServer.AppHost.csproj" Id="d2924bae-01d2-45c3-abb9-ebd5790ec739" />
+  <Project Path="41.AgentChatHistoryInSQLServer.ServiceDefaults/41.AgentChatHistoryInSQLServer.ServiceDefaults.csproj" />
   <Project Path="AgentApp/AgentApp.csproj" />
+  <Project Path="AgentAppWebApi/AgentAppWebApi.csproj" Id="508d50d8-b5d8-433d-81b7-1527da4bdbf5" />
 </Solution>
