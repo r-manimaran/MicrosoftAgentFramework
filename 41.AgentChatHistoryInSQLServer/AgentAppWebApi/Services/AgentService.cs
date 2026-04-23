@@ -19,7 +19,8 @@ public class AgentService : IAgentService, IAsyncDisposable
     private readonly ChatClientAgent _agent;
 
     private readonly ConcurrentDictionary<string, AgentSession> _sessions = new();
-    public AgentService(SqlServerVectorStore vectorStore, AzureOpenAIConfig config, ILogger<AgentService> logger)
+    public AgentService(SqlServerVectorStore vectorStore, AzureOpenAIConfig config, 
+        ILogger<AgentService> logger)
     {
         var azureClient = new AzureOpenAIClient(
            new Uri(config.Endpoint),
