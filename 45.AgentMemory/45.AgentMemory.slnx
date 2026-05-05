@@ -1,7 +1,9 @@
 <Solution>
+  <Project Path="AgentFrameworkMemory_05_CosmosDB_Cache/AgentWithMemory_06_CosmosDB_Cache.csproj" Id="628f4d57-d3bf-4725-907e-171e008e14c3" />
   <Project Path="AgentWithMemory_01_ChatHistoryMemory/AgentWithMemory_01_ChatHistoryMemory.csproj" />
   <Project Path="AgentWithMemory_02_MemoryUsingMem0/AgentWithMemory_02_MemoryUsingMem0.csproj" />
   <Project Path="AgentWithMemory_03_MemoryUsingFoundry/AgentWithMemory_03_MemoryUsingFoundry.csproj" />
   <Project Path="AgentWithMemory_04_BoundedChatHistory/AgentWithMemory_04_BoundedChatHistory.csproj" />
+  <Project Path="AgentWithMemory_05_CosmosDB/AgentWithMemory_05_CosmosDB.csproj" Id="fdd7b1ef-f485-492d-943f-0e733b8dc625" />
   <Project Path="Shared/Shared.csproj" />
 </Solution>

@@ -23,4 +23,14 @@ public class LLMConfig
 
     public static string MEM0Endpoint => configuration["MEM0:Endpoint"] ?? throw new ArgumentNullException("MEM0_ENDPOINT is not set.");
     public static string MEM0ApiKey => configuration["MEM0:ApiKey"] ?? throw new ArgumentNullException("MEM0 ApiKey not set");
+
+    // ---------------
+    // Azure Cosmos
+    // --------------
+    public static string AzureCosmosEndpoint => configuration["AzureCosmos:Endpoint"] ?? throw new ArgumentNullException("MEM0 ApiKey not set");
+
+    public static string AzureCosmosKey => configuration["AzureCosmos:ApiKey"] ?? throw new ArgumentNullException("MEM0 ApiKey not set");
+    public static string AzureCosmosDB => configuration["AzureCosmos:Database"] ?? throw new ArgumentNullException("MEM0 ApiKey not set");
+    public static string AzureCosmosContainer => configuration["AzureCosmos:Container"] ?? throw new ArgumentNullException("MEM0 ApiKey not set");
+
 }
