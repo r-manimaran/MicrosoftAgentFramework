@@ -15,8 +15,14 @@ var client = new AzureOpenAIClient(new Uri(LLMConfig.Endpoint),
 // Declare the Cosmos Client
 // -----------------------
 var cosmosClient = new CosmosClient(LLMConfig.AzureCosmosEndpoint, LLMConfig.AzureCosmosKey);
-var database = cosmosClient.GetDatabase(LLMConfig.AzureCosmosDB);
-var container = database.GetContainer(LLMConfig.AzureCosmosContainer);
+var database = await cosmosClient.CreateDatabaseIfNotExistsAsync(LLMConfig.AzureCosmosDB);
+
+var containerProperties = new ContainerProperties(
+    id: LLMConfig.AzureCosmosContainer,
+    partitionKeyPaths: new List<string> { "/tenantId", "/userId", "/conversationId" }
+);
+
+var container = await database.Database.CreateContainerIfNotExistsAsync(containerProperties);
 
 // ----------------
 // History provider
@@ -25,8 +31,8 @@ string conversationId = "AgentConversation";
 
 var historyProvider = new CosmosChatHistoryProvider(
     cosmosClient: cosmosClient,
-    databaseId: database.Id,
-    containerId: container.Id,
+    databaseId: database.Database.Id,
+    containerId: container.Resource.Id,
     stateInitializer: _ => new CosmosChatHistoryProvider.State(
         conversationId:conversationId,
         tenantId: "default-tenant",
@@ -52,7 +58,9 @@ AIAgent agent = client.GetChatClient(LLMConfig.DeploymentOrModelId).AsAIAgent(ag
 // Start a new session for the agent conversation.
 AgentSession session = await agent.CreateSessionAsync();
 
-var prompt1 = "What are the top 10 tamil movies according to IMDB?"; // "Ok, can you give the top only"
+//var prompt1 = "What are the top 10 tamil movies according to IMDB?"; // "Ok, can you give the top 5 only"
+
+var prompt1 = "Ok, can you give the top 5 only";
 Utils.Gray(prompt1);
 AgentResponse response = await agent.RunAsync(prompt1, session);
 Console.WriteLine(response);
