@@ -1,0 +1,1 @@
+# docker run -p 3001:3001 mcp/markitdown --http --host 0.0.0.0 --port 3001
