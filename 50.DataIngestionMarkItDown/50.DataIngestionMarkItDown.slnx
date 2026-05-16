@@ -3,4 +3,5 @@
     <File Path="docker-compose.yml" />
   </Folder>
   <Project Path="AgentApp/AgentApp.csproj" />
+  <Project Path="ChatApp/ChatApp.csproj" />
 </Solution>
