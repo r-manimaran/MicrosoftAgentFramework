@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DataIngestion;
 using Microsoft.Extensions.DataIngestion.Chunkers;
 using Microsoft.ML.Tokenizers;
+using OpenAI.Chat;
 
 Console.WriteLine("Starting the application...");
 string connectionString = LLMConfig.SqlConnectionString;
@@ -23,7 +24,7 @@ using var host = Host.CreateDefaultBuilder(args)
     {
         logging.ClearProviders();
         logging.AddConsole();
-        logging.SetMinimumLevel(LogLevel.Debug);
+        logging.SetMinimumLevel(LogLevel.Trace);
     })
     .ConfigureServices(s =>
     {
@@ -41,7 +42,22 @@ VectorStoreWriter<string> writer = new(vectorStore, dimensionCount: 1536, new Ve
 
 IngestionDocumentReader reader = new MarkItDownMcpReader(new Uri("http://localhost:3001/mcp"));
 
-using IngestionPipeline<string> pipeline = new IngestionPipeline<string>(reader, GetChunker(embeddingGenerator), writer);
+IChatClient chatClient = azureClient.GetChatClient("gpt-4o-mini").AsIChatClient();
+
+var loggerFactory = host.Services.GetRequiredService<ILoggerFactory>();
+var logginChatCLient = chatClient.AsBuilder().UseLogging(loggerFactory).Build();
+
+var enricherOption = new EnricherOptions(logginChatCLient);
+
+
+using IngestionPipeline<string> pipeline = new IngestionPipeline<string>(reader, GetChunker(embeddingGenerator), writer)
+{
+    ChunkProcessors =
+    {
+        new SummaryEnricher(enricherOption,20),
+        new KeywordEnricher(enricherOption,[])
+    }
+};
 await foreach(var r in pipeline.ProcessAsync(new DirectoryInfo(@"C:\Maran\Study\Documents\DataIngestion"), searchPattern:"*.pdf")){
     Console.WriteLine($"Result:{r.Succeeded}");
 }
