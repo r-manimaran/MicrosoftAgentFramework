@@ -33,4 +33,7 @@ public class LLMConfig
     public static string AzureCosmosDB => configuration["AzureCosmos:Database"] ?? throw new ArgumentNullException("MEM0 ApiKey not set");
     public static string AzureCosmosContainer => configuration["AzureCosmos:Container"] ?? throw new ArgumentNullException("MEM0 ApiKey not set");
 
+
+    // Azure Foundry
+    public static string FoundryProjectEndpoint => configuration["Foundry:Endpoint"] ?? throw new ArgumentNullException("Foundry:Endpoint");
 }
